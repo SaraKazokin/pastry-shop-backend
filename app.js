@@ -1,16 +1,21 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express'
+import connectDB from './config/db.js'
+import productRoutes from './routes/product.router.js';
+
+connectDB();
 
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Connected to MongoDB Atlas successfully!'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+app.use('/api/products', productRoutes);
 
-const PORT = process.env.PORT || 3000;
+app.get('/', (req, res) => {
+  res.send('Pastry shop API is running...');
+});
+
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
