@@ -1,6 +1,7 @@
 import express from 'express'
 import connectDB from './config/db.js'
 import productRoutes from './routes/product.router.js';
+import userRoutes from './routes/user.router.js';
 
 connectDB();
 
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Pastry shop API is running...');
