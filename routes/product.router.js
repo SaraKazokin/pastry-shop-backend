@@ -7,15 +7,18 @@ import {
     deleteProduct
 } from '../controllers/product.controller.js';
 
+import validate from '../middleware/validate.js';
+import { createProductSchema, updateProductSchema } from '../validation/product.validation.js';
+
 const router = express.Router();
 
 router.route('/')
     .get(getProducts)
-    .post(createProduct);
+    .post(validate(createProductSchema), createProduct);
 
 router.route('/:id')
     .get(getProductById)
-    .put(updateProduct)
+    .put(validate(updateProductSchema), updateProduct)
     .delete(deleteProduct);
 
 export default router;
