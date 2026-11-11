@@ -7,8 +7,8 @@ import {
     deleteProduct
 } from '../controllers/product.controller.js';
 
-import validate from '../middleware/validate.js';
-import { createProductSchema, updateProductSchema } from '../validation/product.validation.js';
+import validate from '../middlewares/validation.middleware.js';
+import { createProductSchema, updateProductSchema } from '../schemas/product.schema.js';
 
 const router = express.Router();
 

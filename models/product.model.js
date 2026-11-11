@@ -7,6 +7,10 @@ const productSchema = new mongoose.Schema(
             required: [true, 'נא להזין שם מוצר'],
             trim: true
         },
+        category: {
+            type: String,
+            required: true,
+        },
         description: {
             type: String,
             trim: true
@@ -24,7 +28,7 @@ const productSchema = new mongoose.Schema(
             type: [String],
             default: []
         },
-        imageurl: {
+        imageUrl: {
             type: String,
             default: ''
         },

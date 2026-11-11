@@ -9,18 +9,26 @@ export const createProductSchema = Joi.object({
     'string.empty': 'קטגוריה לא יכולה להיות ריקה',
     'any.required': 'קטגוריה היא שדה חובה'
   }),
-  price: Joi.number().required().messages({
+  description: Joi.string().optional(),
+  price: Joi.number().min(0).required().messages({
     'number.min': 'המחיר לא יכול להיות שלילי',
     'any.required': 'מחיר הוא שדה חובה'
   }),
-  imageUrl: Joi.string().uri().optional()
+  ingredients: Joi.array().items(Joi.string()).optional(),
+  allergens: Joi.array().items(Joi.string()).optional(),
+  imageUrl: Joi.string().uri().optional(),
+  isAvailable: Joi.boolean().optional()
 });
 
 export const updateProductSchema = Joi.object({
   name: Joi.string(),
   category: Joi.string(),
-    price: Joi.number().min(0),
-    imageUrl: Joi.string().uri()
+  description: Joi.string(),
+  price: Joi.number().min(0),
+  ingredients: Joi.array().items(Joi.string()),
+  allergens: Joi.array().items(Joi.string()),
+  imageUrl: Joi.string().uri(),
+  isAvailable: Joi.boolean()
 }).min(1).messages({
-    'object.min': 'יש לספק לפחות שדה אחד לעדכון'
+  'object.min': 'יש לספק לפחות שדה אחד לעדכון'
 });

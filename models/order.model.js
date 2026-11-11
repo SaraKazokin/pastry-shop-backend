@@ -44,7 +44,7 @@ const orderSchema = new mongoose.Schema(
         },
         status: {
             type: String,
-            enum: ['pending', 'confirmed', 'preparing', 'ready', 'completed', 'cancelled'],
+            enum: ['pending', 'in_preparation', 'ready_for_pickup', 'completed', 'cancelled'],
             default: 'pending'
         },
         fulfillmentType: {
@@ -52,7 +52,7 @@ const orderSchema = new mongoose.Schema(
             enum: ['pickup', 'delivery'],
             required: [true, 'יש לציין את סוג האספקה']
         },
-        deliveryAdress: {
+        deliveryAddress: {
             type: String,
             required: function() {
                 return this.fulfillmentType === 'delivery';

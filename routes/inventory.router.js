@@ -7,15 +7,18 @@ import {
   deleteInventoryItem
 } from "../controllers/inventory.controller.js";
 
+import validate from '../middlewares/validation.middleware.js';
+import { createInventorySchema, updateInventorySchema } from '../schemas/inventory.schema.js';
+
 const router = express.Router();
 
 router.route('/')
     .get(getInventory)
-    .post(createInventoryItem);
+    .post(validate(createInventorySchema), createInventoryItem);
 
 router.route('/:id')
     .get(getInventoryItemById)
-    .put(updateInventoryItem)
+    .put(validate(updateInventorySchema), updateInventoryItem)
     .delete(deleteInventoryItem);
 
 export default router;

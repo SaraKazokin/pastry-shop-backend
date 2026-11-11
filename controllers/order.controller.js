@@ -3,7 +3,7 @@ import Order from '../models/order.model.js';
 export const getOrders = async (req, res) => {
     try {
         const orders = await Order.find()
-            .populate('userId', 'fullname email phone')
+            .populate('userId', 'fullName email phone')
             .populate('items.productId', 'name price');
 
         res.status(200).json(orders)

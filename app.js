@@ -5,7 +5,7 @@ import userRoutes from './routes/user.router.js';
 import orderRoutes from './routes/order.router.js';
 import inventoryRoutes from './routes/inventory.router.js';
 import reviewRoutes from './routes/review.router.js';
-import errorHandler from './middleware/errorHandler.js';
+import errorHandler from './middlewares/error.middlewares.js';
 
 connectDB();
 
