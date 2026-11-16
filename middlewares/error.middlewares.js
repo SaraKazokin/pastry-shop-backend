@@ -1,4 +1,4 @@
-import AppError from "../utils/AppError";
+import AppError from "../utils/AppError.js";
 
 const errorHandler = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
@@ -9,13 +9,13 @@ const errorHandler = (err, req, res, next) => {
     error.name = err.name;
 
     if (error.name === 'CastError') {
-        const message = 'Invalid ${error.path}: ${error.value}.';
+        const message = `Invalid ${error.path}: ${error.value}.`;
         error = new AppError(message, 400);
     }
 
-    if (error.code = 11000) {
+    if (error.code === 11000) {
         const value = error.errmsg ? error.errmsg.match(/(["'])(\\?.)*?\1/)[0] : 'Duplicate value';
-        const message = 'Duplicate field value: ${value}. Please use another value!'
+        const message = `Duplicate field value: ${value}. Please use another value!`
         error = new AppError(message, 400)
     }
 
