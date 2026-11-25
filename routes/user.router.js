@@ -3,6 +3,7 @@ import {
     getUsers,
     getUserById,
     createUser,
+    login,
     updateUser,
     deleteUser
 } from '../controllers/user.controller.js';
@@ -15,6 +16,9 @@ const router = express.Router();
 router.route('/')
     .get(getUsers)
     .post(validate(createUserSchema), createUser);
+
+router.route('/login')
+    .post(login);
 
 router.route('/:id')
     .get(getUserById)
